@@ -45,7 +45,7 @@ class ReposAdapter : PagingDataAdapter<UiModel, ViewHolder>(UIMODEL_COMPARATOR) 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val uiModel = getItem(position)
-        uiModel.let {
+        uiModel?.let {
             when (uiModel) {
                 is UiModel.RepoItem -> (holder as RepoViewHolder).bind(uiModel.repo)
                 is UiModel.SeparatorItem -> (holder as SeparatorViewHolder).bind(uiModel.description)

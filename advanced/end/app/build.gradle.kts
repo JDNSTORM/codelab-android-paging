@@ -17,15 +17,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
+    alias(libs.plugins.androidx.room)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
     namespace = "com.example.android.codelabs.paging"
-    compileSdk = 31
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.example.android.codelabs.paging"
-        minSdk = 15
+        minSdk = 23
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
@@ -56,6 +57,14 @@ android {
     }
 }
 
+ksp {
+    arg("room.generateKotlin", "true")
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
 dependencies {
     implementation (fileTree("libs"))
     implementation (libs.kotlinx.coroutines.android)
@@ -73,8 +82,9 @@ dependencies {
     implementation (libs.androidx.lifecycle.viewmodel.savedstate)
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
+    implementation (libs.androidx.room.paging)
     implementation (libs.androidx.paging.runtime.ktx)
-    kapt (libs.androidx.room.compiler)
+    ksp (libs.androidx.room.compiler)
 
     // retrofit
     implementation (libs.retrofit)
