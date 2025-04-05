@@ -1,0 +1,11 @@
+[versions]
+androidGradle = "8.9.0"
+kotlin = "1.9.24"
+
+[libraries]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+[bundles]
